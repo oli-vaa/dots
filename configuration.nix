@@ -47,6 +47,8 @@
 
   programs.hyprland.enable = true;
   programs.hyprland.xwayland.enable = true; 
+
+  programs.zsh.enable = true;
   
   services.xserver.displayManager.sddm.enable = true;
 
@@ -58,8 +60,9 @@
   # services.printing.enable = true;
 
   # Enable sound.
-  # sound.enable = true;
-  # hardware.pulseaudio.enable = true;
+  sound.enable = true;
+  hardware.pulseaudio.enable = true;
+  sound.mediaKeys.enable = true;
 
   # Enable touchpad support (enabled default in most desktopManager).
   services.xserver.libinput.enable = true;
@@ -67,7 +70,8 @@
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.liv = {
     isNormalUser = true;
-    extraGroups = [ "wheel" ]; # Enable ‘sudo’ for the user.
+    extraGroups = [ "wheel" "audio" ]; # Enable ‘sudo’ for the user.
+    shell = pkgs.zsh;
     packages = with pkgs; [
     #  firefox
     #  tree
@@ -77,33 +81,39 @@
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
-    vim
     alacritty
-    kitty
-    firefox-wayland
-    git
-    hyprland
-    hyprpaper
-    mpv
-    discord
-    vscode
-    neofetch
-    rofi-wayland
-    waybar
-    unzip
-    wget
-    xwayland
-    spotify
-    python
+    anki
     bitwarden
+    discord
     dolphin
     dunst
-    obsidian
-    yt-dlp
-    networkmanager
-    sddm
-    lf
+    firefox-wayland
+    git
     grim
+    hyprland
+    hyprpaper
+    kitty
+    lf
+    lxqt.lxqt-policykit
+    mpv
+    neofetch
+    neovim
+    networkmanager
+    obsidian
+    pipewire
+    python
+    rofi-wayland
+    sddm
+    spotify
+    unzip
+    vscode
+    waybar
+    wget
+    wireplumber
+    xdg-desktop-portal-hyprland
+    xwayland
+    yt-dlp
+    zsh
   ];
 
   fonts.fontDir.enable = true;
